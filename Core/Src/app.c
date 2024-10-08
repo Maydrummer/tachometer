@@ -14,6 +14,7 @@ static tachometer_event_t evento;
 static uint32_t time_elapsed;
 static uint32_t time1;
 static uint32_t time2;
+static uint32_t last_sample_time;
 char message[100];
 char byte_received;
 void tachometer_init(void)
@@ -50,13 +51,23 @@ void tachometer_state_machine(tachometer_event_t event)
 					current_state = TAC_WAIT_TRANSMIT;
 					break;
 				case TRIGGER_ON:
-					if (! enqueue(&buffer, get_frequency()))
+					if (HAL_GetTick() - last_sample_time >= MUESTREO_MS)
 					{
-						evento = FULL_BUFFER;
-						time2 = HAL_GetTick();
+						if (! enqueue(&buffer, get_frequency()))
+						{
+							evento = FULL_BUFFER;
+							time2 = HAL_GetTick();
+						}
+						time_elapsed = time2 - time1;
+						last_sample_time = HAL_GetTick();
 					}
-					time_elapsed = time2 - time1;
-					HAL_Delay(MUESTREO_MS);
+//					if (! enqueue(&buffer, get_frequency()))
+//					{
+//						evento = FULL_BUFFER;
+//						time2 = HAL_GetTick();
+//					}
+//					time_elapsed = time2 - time1;
+//					HAL_Delay(MUESTREO_MS);
 
 
 					break;
@@ -89,6 +100,7 @@ void tachometer_state_machine(tachometer_event_t event)
 					if(!dequeue(&buffer))
 					{
 						evento = EMPTY_BUFFER;
+						HAL_UART_Transmit(&huart2, (uint8_t*)"\n",1, 100);
 					}
 
 					break;

@@ -137,14 +137,14 @@ void data_ready(uint32_t time_elapsed, uint8_t muestreo, uint32_t buffer_size, c
     HAL_UART_Transmit(&huart2, (uint8_t*)pMsg, message_length, 100);
 }
 
-void send_value(uint32_t value)
+void send_value(uint8_t value)
 {
-    uint8_t data[4];
-    data[0] = (value >> 24) & 0xFF;  // Byte más significativo
-    data[1] = (value >> 16) & 0xFF;
-    data[2] = (value >> 8) & 0xFF;
-    data[3] = value & 0xFF;          // Byte menos significativo
-    HAL_UART_Transmit(&huart2, data, sizeof(data), 100);
+//    uint8_t data[4];
+//    data[0] = (value >> 24) & 0xFF;  // Byte más significativo
+//    data[1] = (value >> 16) & 0xFF;
+//    data[2] = (value >> 8) & 0xFF;
+//    data[3] = value & 0xFF;          // Byte menos significativo
+	HAL_UART_Transmit(&huart2, &value, sizeof(value), 100);
 }
 
 

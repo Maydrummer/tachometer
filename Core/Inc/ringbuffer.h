@@ -15,7 +15,7 @@
 
 typedef struct
 {
-	uint32_t data[BUFFER_SIZE];
+	uint8_t data[BUFFER_SIZE];
 	uint16_t head;
 	uint16_t count;
 }Ring_buffer_t;
@@ -23,7 +23,7 @@ typedef struct
 void init_ring_buffer(Ring_buffer_t *buffer);
 bool buffer_is_full(Ring_buffer_t *buffer);
 bool buffer_is_empty(Ring_buffer_t *buffer);
-bool enqueue(Ring_buffer_t *buffer, uint32_t value);
+bool enqueue(Ring_buffer_t *buffer, uint8_t value);
 bool dequeue(Ring_buffer_t *buffer);
 uint32_t get_buffer_size(void);
 

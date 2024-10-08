@@ -25,7 +25,7 @@ bool buffer_is_empty(Ring_buffer_t *buffer)
 
 }
 
-bool enqueue(Ring_buffer_t *buffer, uint32_t value)
+bool enqueue(Ring_buffer_t *buffer, uint8_t value)
 {
 	if(buffer_is_full(buffer))
 	{

@@ -42,7 +42,7 @@ void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 char receive_byte(void);
-void send_value(uint32_t value);
+void send_value(uint8_t value);
 void data_ready(uint32_t time_elapsed, uint8_t muestreo, uint32_t buffer_size, char *pMsg);
 /* USER CODE END Prototypes */
 
