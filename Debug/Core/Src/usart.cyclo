@@ -1,3 +1,6 @@
 ../Core/Src/usart.c:31:6:MX_USART2_UART_Init	2
 ../Core/Src/usart.c:59:6:HAL_UART_MspInit	2
 ../Core/Src/usart.c:89:6:HAL_UART_MspDeInit	2
+../Core/Src/usart.c:114:6:receive_byte	2
+../Core/Src/usart.c:130:6:data_ready	1
+../Core/Src/usart.c:140:6:send_value	1

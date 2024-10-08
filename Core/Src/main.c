@@ -104,8 +104,6 @@ int main(void)
     /* USER CODE BEGIN 3 */
 	  evento_actual = read_event();
 	  tachometer_state_machine(evento_actual);
-//	  sprintf(gu8_MSG, "Frequency = %lu Hz\n\r", gu32_Freq);
-//	  HAL_UART_Transmit(&huart2, gu8_MSG, sizeof(gu8_MSG), 100);
 
   }
   /* USER CODE END 3 */

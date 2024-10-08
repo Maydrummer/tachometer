@@ -41,3 +41,22 @@ bool enqueue(Ring_buffer_t *buffer, uint32_t value)
 	}
 
 }
+
+bool dequeue(Ring_buffer_t *buffer)
+{
+	if (buffer_is_empty(buffer))
+	{
+		return false;
+	}
+	else
+	{
+		buffer->head = (buffer->head + 1) % BUFFER_SIZE;
+		buffer->count--;
+		return true;
+	}
+}
+
+uint32_t get_buffer_size(void)
+{
+	return (uint32_t) BUFFER_SIZE;
+}

@@ -14,6 +14,8 @@ static tachometer_event_t evento;
 static uint32_t time_elapsed;
 static uint32_t time1;
 static uint32_t time2;
+char message[100];
+char byte_received;
 void tachometer_init(void)
 {
 	disable_tim_interrupts();
@@ -24,7 +26,7 @@ void tachometer_init(void)
 	time_elapsed = 0;
 	time1 = 0;
 	time2= 0;
-
+	byte_received = '0';
 
 }
 
@@ -67,6 +69,13 @@ void tachometer_state_machine(tachometer_event_t event)
 				case SERIAL_RECEIVED:
 					current_state = TAC_TRANSMIT;
 					break;
+				case FULL_BUFFER:
+					byte_received = receive_byte();
+					if (byte_received == 'x' || byte_received == 'X' )
+					{
+						evento = SERIAL_RECEIVED;
+
+					}
 				default:
 					break;
 			}
@@ -75,6 +84,13 @@ void tachometer_state_machine(tachometer_event_t event)
 			switch (event) {
 				case EMPTY_BUFFER:
 					current_state = TAC_POLLING_TRIGGER;
+				case SERIAL_RECEIVED:
+					send_value(buffer.data[buffer.head]);
+					if(!dequeue(&buffer))
+					{
+						evento = EMPTY_BUFFER;
+					}
+
 					break;
 				default:
 					break;
@@ -97,6 +113,7 @@ void tachometer_entry_action(tachometer_state_t state)
 		case TAC_POLLING_TRIGGER:
 			init_ring_buffer(&buffer);
 			enable_gpio_interrupts();
+			evento = TRIGGER_OFF;
 
 			break;
 		case TAC_MEASURE:
@@ -104,6 +121,7 @@ void tachometer_entry_action(tachometer_state_t state)
 			time1 = HAL_GetTick();
 			break;
 		case TAC_WAIT_TRANSMIT:
+			data_ready(time_elapsed, (uint8_t) MUESTREO_MS, get_buffer_size(), message);
 
 			break;
 		case TAC_TRANSMIT:

@@ -24,5 +24,7 @@ void init_ring_buffer(Ring_buffer_t *buffer);
 bool buffer_is_full(Ring_buffer_t *buffer);
 bool buffer_is_empty(Ring_buffer_t *buffer);
 bool enqueue(Ring_buffer_t *buffer, uint32_t value);
+bool dequeue(Ring_buffer_t *buffer);
+uint32_t get_buffer_size(void);
 
 #endif /* INC_RINGBUFFER_H_ */

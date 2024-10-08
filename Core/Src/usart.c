@@ -111,4 +111,41 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
+char receive_byte(void)
+{
+    char byte_received;
+    HAL_StatusTypeDef status;
+
+    status = HAL_UART_Receive(&huart2, (uint8_t*)&byte_received, sizeof(byte_received), 100);
+
+    if (status == HAL_OK) {
+        return byte_received;
+    } else {
+
+        return -1;
+
+    }
+}
+
+void data_ready(uint32_t time_elapsed, uint8_t muestreo, uint32_t buffer_size, char *pMsg)
+{
+    sprintf(pMsg, "Datos listos. Tiempo transcurrido = %lu ms, Muestreo= %u ms, Data Length = %lu.\r\n",
+            time_elapsed, muestreo, buffer_size);
+
+    uint16_t message_length = strlen(pMsg);
+
+    HAL_UART_Transmit(&huart2, (uint8_t*)pMsg, message_length, 100);
+}
+
+void send_value(uint32_t value)
+{
+    uint8_t data[4];
+    data[0] = (value >> 24) & 0xFF;  // Byte más significativo
+    data[1] = (value >> 16) & 0xFF;
+    data[2] = (value >> 8) & 0xFF;
+    data[3] = value & 0xFF;          // Byte menos significativo
+    HAL_UART_Transmit(&huart2, data, sizeof(data), 100);
+}
+
+
 /* USER CODE END 1 */
