@@ -1,0 +1,4 @@
+../Core/Src/gpio.c:44:6:MX_GPIO_Init	1
+../Core/Src/gpio.c:119:6:HAL_GPIO_EXTI_Callback	1
+../Core/Src/gpio.c:124:6:enable_gpio_interrupts	1
+../Core/Src/gpio.c:129:6:disable_gpio_interrupts	1

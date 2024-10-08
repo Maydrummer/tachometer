@@ -1,0 +1,4 @@
+../Core/Src/ringbuffer.c:10:6:init_ring_buffer	1
+../Core/Src/ringbuffer.c:16:6:buffer_is_full	1
+../Core/Src/ringbuffer.c:22:6:buffer_is_empty	1
+../Core/Src/ringbuffer.c:28:6:enqueue	2

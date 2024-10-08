@@ -1,0 +1,8 @@
+../Core/Src/tim.c:39:6:MX_TIM2_Init	6
+../Core/Src/tim.c:92:6:HAL_TIM_Base_MspInit	2
+../Core/Src/tim.c:124:6:HAL_TIM_Base_MspDeInit	2
+../Core/Src/tim.c:149:6:HAL_TIM_IC_CaptureCallback	3
+../Core/Src/tim.c:167:6:HAL_TIM_PeriodElapsedCallback	1
+../Core/Src/tim.c:172:10:get_frequency	1
+../Core/Src/tim.c:177:6:disable_tim_interrupts	1
+../Core/Src/tim.c:184:6:enable_tim_interrupts	1
