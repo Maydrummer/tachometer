@@ -11,7 +11,7 @@
 #include "ringbuffer.h"
 #include "main.h"
 
-#define MUESTREO_MS 2
+#define MUESTREO_MS 1
 
 typedef enum
 {

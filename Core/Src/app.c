@@ -130,6 +130,7 @@ void tachometer_entry_action(tachometer_state_t state)
 			break;
 		case TAC_MEASURE:
 			enable_tim_interrupts();
+			disable_gpio_interrupts();
 			time1 = HAL_GetTick();
 			break;
 		case TAC_WAIT_TRANSMIT:

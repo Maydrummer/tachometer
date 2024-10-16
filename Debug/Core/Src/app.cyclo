@@ -1,5 +1,5 @@
 ../Core/Src/app.c:20:6:tachometer_init	1
 ../Core/Src/app.c:34:6:tachometer_state_machine	18
 ../Core/Src/app.c:122:6:tachometer_entry_action	4
-../Core/Src/app.c:148:20:read_event	1
-../Core/Src/app.c:154:6:modify_event	1
+../Core/Src/app.c:149:20:read_event	1
+../Core/Src/app.c:155:6:modify_event	1
