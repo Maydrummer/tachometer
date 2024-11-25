@@ -134,6 +134,7 @@ void tachometer_entry_action(tachometer_state_t state)
 			time1 = HAL_GetTick();
 			break;
 		case TAC_WAIT_TRANSMIT:
+			disable_tim_interrupts();
 			data_ready(time_elapsed, (uint8_t) MUESTREO_MS, get_buffer_size(), message);
 
 			break;
